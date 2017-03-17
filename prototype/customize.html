@@ -29,30 +29,30 @@
 <body>
 	<div class="container">
 		<div class="screen" id="screen">
-			<div class="mid">
-				<a href="week.html"
-					style="float:right;height:20px;display:inline-block;margin:10px;" >
-					<img src = "add.png" style="width:20px;height:20px;">
-				</a>
+			<div class="left-half">
+				<p style="margin:25px">
+					<a href="settings.html"><img src = "back.png" style="width:20px;height:20px;display:inline-block;vertical-align:middle;"></a>
+					<span style="vertical-align: middle;">back</span>
+				</p>
 			</div>
+
 			<div class="mid" style="width:100%;text-align:center;margin:auto;">
-				<button class="accordion" onclick="expandNextSib(this)">customize</button>
-				<div class="panel">
-					<img src="customize.png" style="width:100%;" onclick="swapColors()">
-				</div>
+				<button class="accordion">customize</button>
+
 				<button class="accordion" onclick="expandNextSib(this)">font</button>
 				<div class="panel">
-					<p>test</p>
+					<p>font options</p>
 				</div>
 				<button class="accordion" onclick="expandNextSib(this)">color</button>
 				<div class="panel">
-					<p>test</p>
+					<img src="customize.png" style="width:100%;" onclick="swapColors()">
 				</div>
-				<button class="accordion" onclick="expandNextSib(this)">logout</button>
+				<button class="accordion" onclick="expandNextSib(this)">background</button>
 				<div class="panel">
-					<p>test</p>
+					<p>background options</p>
 				</div>
 			</div>
+
 			<div class="mid" style="text-align:center;">
 				<p style="margin:30px;">
 					<img src="down.png" style="width:50px;height:30px;display:inline-block;">
@@ -62,6 +62,6 @@
 		</div>
 		<img src="iphone-frame.png">
 	</div>
-	
+
 </body>
 </html>
