@@ -1,0 +1,79 @@
+.monthPre{
+ color: gray;
+ text-align: center;
+}
+.monthNow{
+ color: blue;
+ text-align: center;
+}
+.dayNow{
+ border: 2px solid black;
+ color: #FF0000;
+ text-align: center;
+}
+.calendar td{
+ htmlContent: 2px;
+ width: 40px;
+}
+.monthNow th{
+ background-color: #000000;
+ color: #FFFFFF;
+ text-align: center;
+}
+.dayNames{
+ background: #0FF000;
+ color: #FFFFFF;
+ text-align: center;
+}
+div.relative {
+    position: relative;
+    top: 30px;
+    left: 0px; 
+}
+.center {
+    margin: auto;
+    width: 95%;
+    
+    padding: 10px;
+}
+.screen {
+  width: 300px;
+	height: 533px;
+	display: inline-block;
+  background-color: #ffffff;
+  vertical-align: top;
+  margin: 0px;
+  outline: none;
+}
+img {
+  max-width: 100%;
+}
+h3 {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 0.8em;
+}
+#header {
+    width: 100%;
+    background-color: red;
+    height: 30px;
+}
+#container {
+    width: 300px;
+    background-color: #ffcc33;
+    margin: auto;
+}
+#first {
+    width: 150px;
+    float: left;
+    height: 100px;
+    background-color: white;
+}
+#second {
+    width: 150px;
+    float: left;
+    height: 100px;
+    background-color: white;
+}
+#clear {
+    clear: both;
+}

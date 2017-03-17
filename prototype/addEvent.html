@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="prototype_style.css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300" rel="stylesheet">
+	<script type="text/javascript" src="calendar_base.js"></script>
+	<style>
+		ul {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		background-color: #333;
+		}
+
+		li {
+		float: left;
+		}
+
+		li a {
+		display: block;
+		color: white;
+		text-align: center;
+		padding: 14px 16px;
+		text-decoration: none;
+		}
+
+		li a:hover {
+		background-color: #111;
+		}
+
+		div.relative {
+		position: relative;
+		top: 30px;
+		left: 0px;
+
+		}
+
+		.center {
+		margin: auto;
+		width: 95%;
+
+		padding: 10px;
+		}
+
+
+		img {
+		max-width: 100%;
+		}
+
+
+		.checkbox-round {
+		width: 1.3em;
+		height: 1.3em;
+		background-color: white;
+		border-radius: 50%;
+		vertical-align: middle;
+		border: 1px solid #ddd;
+		-webkit-appearance: none;
+		outline: none;
+		cursor: pointer;
+		}
+
+		.checkbox-round:checked {
+		background-color: gray;
+		}
+
+		.notification{
+			display: none; /* Hidden by default */
+			position: absolute; /* Stay in place */
+			z-index: 1001; /* Sit on top */
+			font-family: 'Montserrat', sans-serif;
+			left: 0;
+			top: 0;
+			width: 100%; /* Full width */
+			height: 100%; /* Full height */
+			overflow: auto; /* Enable scroll if needed */
+			background-color: rgb(0,0,0); /* Fallback color */
+			background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+		}
+
+		.notification-content{
+			background-color: #fefefe;
+			margin: 10px auto; /* 15% from the top and centered */
+			padding: 10px;
+			padding-top: 5px;
+			border: 1px solid #888;
+			width: 90%; /* Could be more or less, depending on screen size */
+			height: 75px;
+			border-radius: 10px;
+		}
+
+		.notification-close{
+			color: #aaa;
+			float: right;
+			font-size: 28px;
+			font-weight: bold;
+		}
+
+		.notification-close:hover,
+		.notification-close:focus {
+		color: black;
+		text-decoration: none;
+		cursor: pointer;
+		}
+
+		.errorBox{
+			display: none; /* Hidden by default */
+			position: fixed; /* Stay in place */
+			z-index: 1001; /* Sit on top */
+			font-family: 'Montserrat', sans-serif;
+			left: 0;
+			top: 0;
+			width: 100%; /* Full width */
+			height: 100%; /* Full height */
+			overflow: auto; /* Enable scroll if needed */
+			background-color: rgb(0,0,0); /* Fallback color */
+			background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+		}
+
+		.errorBox-content{
+			background-color: #fefefe;
+			background-color: rgba(100, 225, 225, 0.8);
+			position: relative;
+			margin: 300px auto; /* 15% from the top and centered */
+			padding: 10px;
+			padding-top: 0px;
+			border: 1px solid #888;
+			width: 300px; /* Could be more or less, depending on screen size */
+			height: 210px;
+			border-radius: 25px;
+		}
+	</style>
+	<script>
+	function showNotification(){
+		var notifyCheckbox = document.getElementById("notifyBox");
+		if(parseInt(document.getElementById("time1").value) > parseInt	(document.getElementById("time2").value)){
+			var errorBox = document.getElementById("errorWindow");
+			errorBox.style.display = "block";
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+				if (event.target == errorBox) {
+					errorBox.style.display = "none";
+				}
+			}
+		}
+		else if (notifyCheckbox.checked){
+			document.getElementById("noteDate").innerHTML = "Starts on " +
+			document.getElementById("date").value + " at " +
+			document.getElementById("time1").options[document.getElementById("time1").selectedIndex].innerHTML;
+			document.getElementById("noteTitle").innerHTML = document.getElementById("nameTextbox").value;
+			var notification = document.getElementById("notificationWindow");
+			notification.style.display = "block";
+			var span = document.getElementsByClassName("notification-close")[0];
+			span.onclick = function() {
+				notification.style.display = "none";
+			}
+
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+				if (event.target == notification) {
+					notification.style.display = "none";
+				}
+			}
+		}
+		else{
+			addEvent();
+		}
+	}
+	</script>
+</head>
+<body>
+	<div class="container">
+		<div class="screen">
+
+			<div id="notificationWindow" class="notification">
+			  <!-- Modal content -->
+			  <div class="notification-content">
+			    <span class="notification-close">&times;</span>
+			    <p style="font-size:10px;line-height:5px">
+						<img src="down.png" style="width:13.4px;height:8px;display:inline-block;">
+						<img src="up.png" style="width:13.4px;height:8px;display:inline-block;">
+						Time Tracker
+					</p>
+			    <p id = "noteTitle" style="font-size:18px;line-height:12px;"><strong>Title</strong></p>
+			    <p id = "noteDate" style="font-size:10px;line-height:0px">date</p>
+			  </div>
+			</div>
+
+			<div id="errorWindow" class="errorBox">
+			  <!-- Modal content -->
+			  <div class="errorBox-content">
+			    <p id="errorText"></p>
+			    <p style="color:white;text-align:center;font-size:20px;">ERROR:<br>TIME CONFILCT</p>
+			    <p style="text-align:center;font-size:15px;line-height:8px">
+						<button
+							style="font-weight:bold;"
+							id = "time"
+							type="button"
+							onclick = "showNotification()" >
+						Replace
+						</button>
+						<br>
+						<button
+							style="font-weight:bold;"
+							id = "time"
+							type="button"
+							onclick = "showNotification()" >
+						Merge Events
+						</button></p>
+			    <p style="text-align:center;font-size:15px;line-height:8px"></p>
+			    <p style="color:white;text-decoration:underline;text-align:center;font-size:10px;line-height:10px">Cancel</p>
+			  </div>
+			</div>
+
+			<div class="left-half">
+				<p style="margin:25px">
+					<a href="month.html"><img src = "back.png" style="width:20px;height:20px;display:inline-block;vertical-align:middle;"></a>
+					<span style="vertical-align: middle;">back</span>
+				</p>
+			</div>
+			<div class="right-half">
+				<p style="margin:25px">
+					<span style="vertical-align: middle;">settings</span>
+					<a href = "settings.html"><img src="add.png"
+					style="height:20px;display:inline-block;vertical-align:middle;"></a>
+				</p>
+				<p style="margin:25px">
+					<span style="vertical-align: middle;">reset</span>
+					<a href = "addEvent.html"><img src="add.png"
+					style="height:20px;display:inline-block;vertical-align:middle;"></a>
+				</p>
+			</div>
+			<div class="mid" style="text-align:center; width:100%;">
+
+				<form action="/action_page.php" style="width:90%;margin:auto;">
+					<p>
+						<input type="text" id="nameTextbox" value="Title" size="30">
+					</p>
+					<p><span style="font-weight:bold;">Date:</span>
+						<select id = "date">
+							<option value="Monday, March 13">Mon, Mar 13</option>
+							<option value="Tuesday, Mar 14">Tue, Mar 14</option>
+							<option value="Wednesday, Mar 15">Wed, Mar 15</option>
+							<option value="Thursday, Mar 16">Thur, Mar 16</option>
+							<option value="Friday, Mar 17">Fri, Mar 17</option>
+							<option value="Saturday, Mar 18">Sat, Mar 18</option>
+							<option value="Sunday, Mar 19">Sun, Mar 19</option>
+						</select>
+					</p>
+					<p><span style="font-weight:bold;">Start:</span>
+						<select id = "time1">
+							<option value="9">9:00 AM</option>
+							<option value="10">10:00 AM</option>
+							<option value="11">11:00 AM</option>
+							<option value="13">1:00 PM</option>
+							<option value="14">2:00 PM</option>
+							<option value="15">3:00 PM</option>
+							<option value="0">Auto schedule</option>
+						</select>
+					</p>
+					<p><span style="font-weight:bold;">End:</span>
+						<select id = "time2">
+							<option value="9">9:00 AM</option>
+							<option value="10">10:00 AM</option>
+							<option value="11">11:00 AM</option>
+							<option value="13">1:00 PM</option>
+							<option value="14">2:00 PM</option>
+							<option value="15">3:00 PM</option>
+							<option value="25">Auto schedule</option>
+						</select>
+					</p>
+					<p><span style="font-weight:bold;">Category:</span>
+						<select>
+							<option value="work">Work</option>
+							<option value="run">Run</option>
+							<option value="walk">Walk</option>
+							<option value="exercise">Exercise</option>
+						</select>
+					</p>
+					<p>
+						<input
+							class="checkbox"
+							type="checkbox"
+							name="repeat"
+							style="display:inline;"/>
+						<label style="display: block;padding-left: 5px;text-indent: -15px;display:inline;font-weight:bold;">
+						Repeat weekly </label>
+					</p>
+						<input
+							class="checkbox"
+							id = "notifyBox"
+							type="checkbox"
+							name="notify"
+							value="weekly"
+							style="display:inline-block;"/>
+							<label style="display: block;padding-left: 5px;text-indent: -15px;display:inline;font-weight:bold;">
+							Notify me: </label>
+						<select id = "notify">
+							<option value="10">10 minutes before</option>
+							<option value="20">20 minutes before</option>
+							<option value="30">30 minutes before</option>
+							<option value="60">1 hour before</option>
+							<option value="120">2 hours before</option>
+							<option value="custom">Custom</option>
+						</select>
+						<br>
+					</p>
+					<p>
+						<input type="text" id="TEXTBOX_ID2" value="Notes" size="30">
+					</p>
+					<br>
+					<p>
+						<button
+							style="font-weight:bold;"
+							id = "time"
+							type="button"
+							onclick = "showNotification()" >
+						ADD EVENT
+						</button>
+					</p>
+				</form>
+			</div>
+
+			<div class="mid" style="text-align:center;">
+				<p style="margin:5px;">
+					<img src="down.png" style="width:50px;height:30px;display:inline-block;">
+					<img src="up.png" style="width:50px;height:30px;display:inline-block;">
+				</p>
+			</div>
+		</div>
+		<img src="iphone-frame.png">
+	</div>
+</body>
+
+
+
+</html>

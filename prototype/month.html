@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300"
+		rel="stylesheet">
+	<link href="prototype_style.css" rel="stylesheet">
+	<link rel="stylesheet" href="mystyle.css">
+	<script type="text/javascript" src="calendar_base.js"></script>
+	</style>
+</head>
+<body onload="displayCalendar()">
+	<div class="container">
+		<div class="screen">
+			<div class="left-half" style="height:140px;">
+				<img src="userid.jpg" style="margin:5px 15px;width:120px;">
+			</div>
+			<div class="right-half" style="height:140px;">
+				<p style="margin:25px">
+					<span style="vertical-align: middle;">settings</span>
+					<a href = "settings.html"><img src="add.png"
+					style="height:20px;display:inline-block;vertical-align:middle;"></a>
+				</p>
+				<p style="margin:25px">
+					<span style="vertical-align: middle;">add event</span>
+					<a href = "addEvent.html"><img src="add.png"
+					style="height:20px;display:inline-block;vertical-align:middle;"></a>
+				</p>
+			</div>
+			<div class="mid pop-grn" style="text-align:center;height:50px;">
+				<img src="left.png"
+					style="float:left;height:20px;margin:10px;display:inline-block;"
+					onclick="monthBack()">
+				<h3 id="monthCalTitle" style="display:inline-block;"> March 2017 </h3>
+				<img src="right.png"
+					style="float:right;height:20px;display:inline-block;margin:10px;"
+					onclick="monthFwd()">
+			</div>
+			<div class="mid"
+				style="height:290px;">
+				<div id="calendar"
+					style="overflow:hidden;">loading calendar...
+				</div>
+			</div>
+			<div class="mid"
+				style="
+					border-top: solid 2px #AAAAAA;
+					border-bottom: solid 2px #AAAAAA;
+					text-align:center;">
+				<p><a style="
+					text-decoration:none;
+					color: #000000;
+					margin: 10px 10px;
+					font-weight: bold"
+					href="week.html">
+					view by week
+				</a></p>
+			</div>
+			<div class="mid" style="text-align:center;">
+				<p style="margin:30px;">
+					<a
+						style="
+							border: solid 2px #AAAAAA;
+							width:100%;
+							height:100%;
+							color: #000000;
+							text-decoration:none;
+							padding: 10px;
+							font-weight: bold"
+						id= "time"
+						type="button"
+						href="graph.html">
+						generate time graph
+					</a>
+				</p>
+				<p style="margin:30px;">
+					<img src="down.png" style="width:50px;height:30px;display:inline-block;">
+					<img src="up.png" style="width:50px;height:30px;display:inline-block;">
+				</p>
+			</div>
+		</div>
+		<img src="iphone-frame.png">
+	</div>
+</body>
+</html>

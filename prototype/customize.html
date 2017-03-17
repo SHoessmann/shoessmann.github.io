@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="prototype_style.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300" rel="stylesheet">
+	<script type="text/javascript" src="calendar_base.js"></script>
+	<style>
+		button.accordion {
+			background-color: #ffffff;
+			cursor: pointer;
+			padding: 18px;
+			width: 100%;
+			border: solid 1px black;
+			outline: none;
+			transition: 0.4s;
+		}
+
+		button.accordion.active, button.accordion:hover {
+			background-color: #ddd;
+		}
+
+		div.panel {
+			padding: 0 18px;
+			background-color: white;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="screen" id="screen">
+			<div class="mid">
+				<a href="week.html" 
+					style="float:right;height:20px;display:inline-block;margin:10px;" >
+					<img src = "add.png" style="width:20px;height:20px;">
+				</a>
+			</div>
+			<div class="mid" style="width:80%;text-align:center;margin:auto;">
+				<button class="accordion" onclick="expandNextSib(this)">customize</button>
+				<div class="panel">
+					<img src="customize.png" style="width:100%;" onclick="swapColors()">
+				</div>
+				<button class="accordion" onclick="expandNextSib(this)">font</button>
+				<div class="panel">
+					<p>test</p>
+				</div>
+				<button class="accordion" onclick="expandNextSib(this)">color</button>
+				<div class="panel">
+					<p>test</p>
+				</div>
+				<button class="accordion" onclick="expandNextSib(this)">logout</button>
+				<div class="panel">
+					<p>test</p>
+				</div>
+			</div>
+			<div class="mid" style="text-align:center;">
+				<p style="margin:30px;">
+					<img src="down.png" style="width:50px;height:30px;display:inline-block;">
+					<img src="up.png" style="width:50px;height:30px;display:inline-block;">
+				</p>
+			</div>
+		</div>
+		<img src="iphone-frame.png">
+	</div>
+</body>
+</html>
